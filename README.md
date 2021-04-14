@@ -43,4 +43,4 @@ For the app to run we need to type in the terminal: python manage.py runserver
 
 I believe my project satisfies the distinctiveness and complexity requirements, mentioned by the CS50 course becasue is made from scratch with no guidance and I implemented all the functionality of the app by using all that we have learned during this intense course, like Python, Java Script, Django, Bootstrap and also I added Glide.js in my project(for this you will need to install glide by running ("npm install @glidejs/glide").
 
-I hope you ennjoyed visiting Romi's Coffee.
+I hope you ennjoyed visiting Romy's Coffee.
