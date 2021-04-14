@@ -9,7 +9,7 @@ ROMY'S COFFEE is a small web-application that is using Python and JavaScript wit
 My web application is utilizing Django (has more than one model) on the back-end and JavaScript on the front-end.
 Romy's Coffee is build in that way that is mobile-responsive.
 
-LET'S FO THROUGH THE FILES
+LET'S GO THROUGH THE FILES!
 
 Inside tha main folder 'CAPSTONE', we have two other folders: 'capstone' and 'RoMoCcino'.
 
