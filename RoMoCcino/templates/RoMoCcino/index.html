@@ -1,0 +1,184 @@
+{% extends 'RoMoCcino/layout.html' %} {% load static %} {% block head %}
+
+<link rel="stylesheet" href="{% static 'css/index.css'%}" />
+<link
+  rel="stylesheet"
+  href="https://unpkg.com/@glidejs/glide@3.4.1/dist/css/glide.core.min.css"
+/>
+
+<link
+  rel="stylesheet"
+  href="https://unpkg.com/@glidejs/glide@3.4.1/dist/css/glide.theme.min.css"
+/>
+
+{% endblock %} {% block body %} {% if carousel %}
+<div
+  id="carousel"
+  class="carousel slide carousel-fade mb-4"
+  data-ride="carousel"
+>
+  <div class="carousel-inner" role="listbox">
+    {% for item in carousel %}
+    <div class="carousel-item {% if forloop.first %}active{% endif %}">
+      <div class="view">
+        <a href="{{item.url}}">
+          <img class="d-block w-100" src="{{ item.image_url }}" alt="slide" />
+          <div class="mask rgba-black-light"></div>
+        </a>
+      </div>
+      <div class="carousel-caption rgba-black-light">
+        <h1 class="h3-responsive">{{ item.title }}</h1>
+        {% if item.subtitle %}
+        <h5 class="d-none d-sm-block mb-0">{{ item.subtitle }}</h5>
+        {% endif %}
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+  <!-- class="d-none d-sm-block mb-0"
+# hidden only on xs -->
+
+  <a
+    class="carousel-control-prev"
+    href="#carousel"
+    role="button"
+    data-slide="prev"
+  >
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="sr-only">Previous</span>
+  </a>
+  <a
+    class="carousel-control-next"
+    href="#carousel"
+    role="button"
+    data-slide="next"
+  >
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="sr-only">Next</span>
+  </a>
+</div>
+{% endif %} {% if popular %}
+<section class="items-scroll my-3 p-1">
+  <h2 class="text-center my-4 header">
+    <span>Popular</span>
+  </h2>
+  <div class="glide">
+    <div class="glide__track" data-glide-el="track">
+      <ul class="glide__slides">
+        {% for object in popular %}
+        <li class="glide__slide">
+          <div class="card-naked">
+            <!--Featured image-->
+            <div class="view overlay hm-white-slight rounded">
+              <img
+                style="height: 200px"
+                src="{{object.item.image_url}}"
+                class="hoverable img-fluid card-image"
+                data-id=""
+              />
+              <a href="{% url 'product' object.item.id %}">
+                <div class="mask rgba-grey-light">
+                  <div class="btn btn-lg btn-white">See details</div>
+                </div>
+              </a>
+            </div>
+
+            <div class="item-label">
+              <strong>{{ object.item.name }}</strong>
+              <p>${{ object.item.price }}</p>
+       
+            </div>
+          </div>
+        </li>
+        {% endfor %}
+      </ul>
+    </div>
+
+    <div class="glide__arrows" data-glide-el="controls">
+      <button class="glide__arrow glide__arrow--left" data-glide-dir="<">
+        prev
+      </button>
+      <button class="glide__arrow glide__arrow--right" data-glide-dir=">">
+        next
+      </button>
+    </div>
+  </div>
+</section>
+{% endif %}
+
+
+<section class="company-details container p-3 my-3" style="text-align: center; background: whitesmoke;">
+  <h3>Romy's Coffee</h3>
+  <p>
+    Romy's Coffee is an American multinational chain of coffeehouses headquartered in Chicago.
+  </p>
+  <p class="fas fa-coffee"></p>
+    Every day has a story. Every story starts with a good cup of coffee.
+  </p>
+</section>
+
+{% if categories %}
+<section class="my-4 container-fluid categories">
+  <h2 class="text-center">Our Produccino's</h2>
+  <hr />
+  <div class="row justify-content-center">
+    {% for category in categories %}
+    <div class="col-6 col-sm-5 p-3 view zoom">
+      <img
+        style="width: 100%; height: 100%"
+        class="img-fluid"
+        src="{{category.image_url}}"
+        alt="image of the category"
+      />
+      <a href="{% url 'collection' category.name %}">
+        <div class="mask flex-center waves-effect waves-light rgba-black-light">
+          <h4 class="white-text text-uppercase flex-center">
+            {{category.name}}
+          </h4>
+        </div>
+      </a>
+    </div>
+    {% endfor %}
+  </div>
+</section>
+{% endif %}
+
+
+<footer class="page-footer font-small elegant-color pt-4">
+
+
+  <div class="container-fluid text-center text-md-center">
+      <div class="row mx-sm-10">
+          <div class="col-md-6 mt-md-0 px-3 mt-3">
+            <!-- col-md-6 will span half of the screen in the dektop(md) -->
+            <!-- px - padding left -->
+            <!-- mt-3- margin top when it shrinks in 2-->
+              <h4 class="font-weight-normal">ROMY'S COFFEE</h4>
+              <p>We caffeinate your day!</p>
+          </div>
+
+ 
+
+          <div class="col-12 col-md-6 mt-md-0 px-sm-3 mt-3">
+              <h5 class="text-uppercase">Final Project</h5>
+              <p class="m-0 d-none d-sm-block">CS50's Web Proggramming with JS and Python.</p>
+              <!-- m- classes set the margin/eliminate the margin or padding by setting to 0 -->
+              <!-- hidden only on xs screen -->
+              <p class=" mt-0 font-weight-normal text-md-center">Project by Romina Ionascu.</p>
+              <!-- m - margin/; t - sets margin-top or padding-top -->
+          </div>
+
+      </div>
+  </div>
+</footer>
+{% endblock %} 
+{% block script %}
+<script src="{% static 'js/index.js' %}" charset="utf-8"></script>
+<script src="https://cdn.jsdelivr.net/npm/@glidejs/glide/dist/glide.js"></script>
+<script>
+  new Glide(".glide", {
+    type: "carousel",
+    perView: 5,
+  }).mount();
+</script>
+{% endblock %}

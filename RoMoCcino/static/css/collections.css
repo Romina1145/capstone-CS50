@@ -1,0 +1,11 @@
+.filter-checkbox div {
+  opacity: 0.5;
+}
+
+.filter-checkbox:hover div {
+  opacity: 0.8;
+}
+
+.filter-checkbox input:checked + div {
+  opacity: 2;
+}

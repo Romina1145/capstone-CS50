@@ -1,0 +1,35 @@
+{% extends 'RoMoCcino/layout.html' %} {% load static %} {% block head %}
+
+<link rel="stylesheet" href="{% static 'css/index.css'%}" />
+
+{% endblock %} {% block body %}
+<section
+  class="company-details container p-3 my-3"
+  style="text-align: center; background: whitesmoke"
+>
+  <h2>Find more about</h2>
+  <br />
+  <br />
+  <h3>{{ item.name }}</h3>
+  <p>{{item.description}}</p>
+  <h5>Price: ${{ item.price }}</h5>
+  <div class="mx-auto d-block img-thumbnail rounded">
+    <img
+      style="height: 200px; text-align: center"
+      src="{{item.image_url}}"
+      data-id=""
+    />
+  </div>
+  <hr />
+
+  <button
+    type="button"
+    id="add_to_cart_btn"
+    class="btn btn-elegant btn-lg text.uppercase w-100"
+    name="button"
+  >
+    <a href="{% url 'add' item.id %}">Add to cart</a>
+  </button>
+</section>
+
+{% endblock %}

@@ -1,0 +1,79 @@
+{% extends 'RoMoCcino/layout.html' %} {% load static %} {% block head %}
+
+<script src="{% static 'js/cart.js' %}" charset="utf-8"></script>
+
+<script src="{% static 'js/cookies.js' %}" charset="utf-8"></script>
+
+{% endblock %} {% block body %}
+
+<main class="container cart my-5">
+  <h3 class="">My Order</h3>
+  <hr />
+  {% for cart_item in cart_items %}
+  <div
+    class="row cart-item my-3"
+    data-id="{{cart_item.item.id}}"
+    data-price="{{cart_item.item.price}}"
+  >
+    <div class="col-12 col-sm-6">
+      <a
+        href="{% url 'product' cart_item.item.id %}"
+        class="waves-effect waves-light"
+      >
+        <img
+          src="{{cart_item.item.image_url}}"
+          class="w-75 p-3"
+          style="height: 250px"
+          alt="image of product"
+      /></a>
+    </div>
+    <div class="col-12 col-sm-6">
+      <h4 class="content_center">{{cart_item.item.name}}</h4>
+      <p class="text-muted content_center mb-1">{{cart_item.item.category}}</p>
+
+      <div class="row">
+        <div class="col-4 content_center">
+          <strong>${{cart_item.item.price}}</strong>
+        </div>
+        <div class="col-4 content_center">
+          <button
+            type="button"
+            class="btn btn-sm btn-primary remove"
+            name="button"
+          >
+            X
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  {% endfor %}
+
+  <div class="details-block row">
+    <div class="col-6">
+      <h4>Total: <span class="total-price"></span></h4>
+      <p>Number of items: <span class="total-items"></span></p>
+    </div>
+    <div class="col-6">
+      <a
+        href="{% url 'checkout' %}"
+        role="button"
+        class="btn btn-elegant btn-block btn-lg w-100"
+        >Checkout</a
+      >
+      <a
+        href="{% url 'home' %}"
+        role="button"
+        class="btn btn-elegant btn-block btn-sm w-100 my-1"
+        >Continue shopping</a
+      >
+    </div>
+  </div>
+  <br />
+  <br />
+  <div class="text-center">
+    <h2>{{ message }}</h2>
+  </div>
+</main>
+{% endblock %}
