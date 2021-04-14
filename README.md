@@ -11,7 +11,7 @@ Romy's Coffee is build in that way that is mobile-responsive.
 
 LET'S GO THROUGH THE FILES!
 
-Inside tha main folder 'CAPSTONE', we have two other folders: 'capstone' and 'RoMoCcino'.
+Inside the main folder 'CAPSTONE', we have two other folders: 'capstone' and 'RoMoCcino'.
 
 capstone folder:
 
